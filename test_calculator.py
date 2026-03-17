@@ -1,5 +1,5 @@
 import unittest
-from calculator import add, subtract, multiply, divide
+from calculator import add, subtract, multiply, divide, power, square_root, modulus
 
 class TestCalculator(unittest.TestCase):
 
@@ -19,6 +19,21 @@ class TestCalculator(unittest.TestCase):
     def test_divide(self):
         self.assertEqual(divide(10, 2), 5.0)
         self.assertEqual(divide(5, 0), "Error: Cannot divide by zero")
+
+    def test_power(self):
+        self.assertEqual(power(2, 3), 8)
+        self.assertEqual(power(5, 0), 1)
+        self.assertEqual(power(-2, 2), 4)
+
+    def test_square_root(self):
+        self.assertEqual(square_root(9), 3.0)
+        self.assertEqual(square_root(0), 0.0)
+        self.assertEqual(square_root(-4), "Error: Cannot square root a negative number")
+
+    def test_modulus(self):
+        self.assertEqual(modulus(10, 3), 1)
+        self.assertEqual(modulus(10, 0), "Error: Cannot divide by zero")
+        self.assertEqual(modulus(9, 3), 0)
 
 if __name__ == "__main__":
     unittest.main()

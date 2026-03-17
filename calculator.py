@@ -15,6 +15,18 @@ def divide(a, b):
     if b == 0:
         return "Error: Cannot divide by zero"
     return a / b
+def power(a, b):
+    return a ** b
+
+def square_root(a, b=None):
+    if a < 0:
+        return "Error: Cannot square root a negative number"
+    return a ** 0.5
+
+def modulus(a, b):
+    if b == 0:
+        return "Error: Cannot divide by zero"
+    return a % b
 
 
 def main():
@@ -26,17 +38,20 @@ def main():
         '2': ('Subtract', subtract),
         '3': ('Multiply', multiply),
         '4': ('Divide', divide),
+        '5': ('Power', power),
+        '6': ('Square Root', square_root),
+        '7': ('Modulus', modulus),
     }
 
     while True:
         print("\nChoose an operation:")
         for key, (name, _) in operations.items():
             print(f"  {key}. {name}")
-        print("  5. Quit")
+        print("  8. Quit")
 
-        choice = input("\nEnter choice (1-5): ").strip()
+        choice = input("\nEnter choice (1-8): ").strip()
 
-        if choice == '5':
+        if choice == '8':
             print("Goodbye!")
             break
 
@@ -45,8 +60,12 @@ def main():
             continue
 
         try:
-            a = float(input("Enter first number: "))
-            b = float(input("Enter second number: "))
+            if choice == '6':
+                a = float(input("Enter number: "))
+                b = None
+            else:
+                a = float(input("Enter first number: "))
+                b = float(input("Enter second number: "))
         except ValueError:
             print("Invalid number. Please enter digits only.")
             continue
