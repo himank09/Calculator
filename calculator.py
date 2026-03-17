@@ -32,6 +32,7 @@ def modulus(a, b):
 def main():
     print("Simple Python Calculator")
     print("------------------------")
+    history=[]
 
     operations = {
         '1': ('Add', add),
@@ -47,13 +48,24 @@ def main():
         print("\nChoose an operation:")
         for key, (name, _) in operations.items():
             print(f"  {key}. {name}")
-        print("  8. Quit")
+        print("  8. History")
+        print("  9. Quit")
+        
 
-        choice = input("\nEnter choice (1-8): ").strip()
+        choice = input("\nEnter choice (1-9): ").strip()
 
-        if choice == '8':
+        if choice == '9':
             print("Goodbye!")
             break
+
+        if choice == '8':
+            if len(history) == 0:
+                print("\n  No calculations yet.")
+            else:
+                print("\n  Calculation History:")
+                for i, entry in enumerate(history, 1):
+                    print(f"  {i}. {entry}")
+            continue
 
         if choice not in operations:
             print("Invalid choice. Please try again.")
@@ -69,11 +81,11 @@ def main():
         except ValueError:
             print("Invalid number. Please enter digits only.")
             continue
-
+        
         name, func = operations[choice]
         result = func(a, b)
         print(f"\n  Result: {a} {name} {b} = {result}")
-
+        history.append(f"{a} {name} {b} = {result}")  # ← add this line
 
 if __name__ == "__main__":
     main()
